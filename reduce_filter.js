@@ -95,21 +95,16 @@ and return array of these two numbers and the numbers between them
 Ex: usAndNumberBeetweenUs(2,5) => [2,3,4,5]
 */
 function usAndNumberBeetweenUs(num1, num2) {
-  var counter = num1;
-  var arr = [num1, num2];
-  var arr2 = [];
+  var arr = [num1];
   var reducer = (acc, current) => {
-    counter++;
-    if (counter > current) {
-      arr2.push(current);
-      arr2.push(counter);
-    } else {
-      arr2.push(counter);
-      arr2.push(current);
+    if (current <= acc) {
+      current++;
+      arr.push(current);
     }
-    arr = arr2;
+    arr.push(acc - 1);
+    arr.push(acc);
   };
-  arr.reduce(reducer, 0);
+  arr.reduce(reducer, num2);
   return arr;
 }
 console.log(usAndNumberBeetweenUs(2, 5));
